@@ -18,12 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         text.className = 'text';
 
         if (isUser) {
-            // For user messages, always use textContent to prevent XSS attacks
             text.textContent = content;
         } else {
-            // For AI messages, parse for <think> tags and render as HTML.
-            // This is safe because we control the replacement tag (<i>).
-            // The regex captures content between <think> tags and wraps it in <i> tags.
             const formattedContent = content.replace(/<think>([\s\S]*?)<\/think>/g, '<i>$1</i>');
             text.innerHTML = formattedContent;
         }
@@ -33,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.appendChild(messageContent);
         chatContainer.appendChild(messageDiv);
 
-        // Scroll to bottom
         chatContainer.scrollTop = chatContainer.scrollHeight;
     };
 
@@ -44,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             userInput.value = '';
             userInput.focus();
 
-            // Send message to server
             fetch('/chat', {
                 method: 'POST',
                 headers: {
