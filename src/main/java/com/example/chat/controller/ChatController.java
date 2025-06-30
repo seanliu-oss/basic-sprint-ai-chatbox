@@ -1,10 +1,8 @@
 package com.example.chat.controller;
 
-import com.example.chat.model.ChatMessage;
 import com.example.chat.service.ChatService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,7 +19,6 @@ public class ChatController {
 
     @GetMapping("/")
     public String chat(Model model) {
-        model.addAttribute("message", new ChatMessage());
         return "chat";
     }
 
